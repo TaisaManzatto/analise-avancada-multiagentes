@@ -1,0 +1,16 @@
+# Ambiente local e arquivos temporários
+/.venv/
+**/__pycache__/
+*.py[cod]
+
+# Dados e imagens da análise original
+*.csv
+*.png
+
+# Implementação e artefatos do dashboard (este repositório publica documentação)
+/graficos.py
+/projeto-dashboard/README.md
+/projeto-dashboard/*.py
+/projeto-dashboard/dados/
+/projeto-dashboard/site/
+/projeto-dashboard/tests/
