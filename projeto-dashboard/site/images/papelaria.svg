@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-labelledby="title description">
+  <title id="title">Caderno aberto e lápis</title>
+  <desc id="description">Caderno aberto com linhas nas páginas e um lápis simples ao lado, sobre fundo claro.</desc>
+  <rect x="16" y="24" width="368" height="252" rx="24" fill="#f1f2ef"/>
+  <path d="M48 83c39-15 82-10 132 11v139c-47-20-91-23-132-9z" fill="#fffefa" stroke="#334b60" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M180 94c43-21 87-26 132-11v141c-41-14-85-11-132 9z" fill="#faf9f5" stroke="#334b60" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M180 94v139" fill="none" stroke="#334b60" stroke-width="4"/>
+  <path d="M70 117h83m-83 23h83m-83 23h83m-83 23h67m-24-63h57m-57 23h57m-57 23h57m-57 23h49" fill="none" stroke="#8295a3" stroke-width="3" stroke-linecap="round"/>
+  <g transform="translate(48 0)">
+    <path d="m304 82 17 3-23 133-17-3z" fill="#d5bd82" stroke="#334b60" stroke-width="4" stroke-linejoin="round"/>
+    <path d="m304 82 3-17 17 3-3 17z" fill="#b7c2c7" stroke="#334b60" stroke-width="4" stroke-linejoin="round"/>
+    <path d="m307 65 2-11 17 3-2 11z" fill="#c58d82" stroke="#334b60" stroke-width="4" stroke-linejoin="round"/>
+    <path d="m281 215 17 3-12 20z" fill="#e8d8b4" stroke="#334b60" stroke-width="4" stroke-linejoin="round"/>
+    <path d="m286 229 3 9 5-8z" fill="#334b60"/>
+    <path d="m289 126 17 3m-21 20 17 3" fill="none" stroke="#f3e7c9" stroke-width="3"/>
+  </g>
+</svg>

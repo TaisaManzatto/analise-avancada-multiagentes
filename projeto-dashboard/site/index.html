@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Painel interativo de vendas de papelaria, de janeiro a março de 2026.">
+    <meta name="theme-color" content="#f6f1e5">
+    <title>Painel de vendas | Caderno de papelaria</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a id="skip-link" class="skip-link" href="#login-title">Pular para o conteúdo</a>
+
+    <main id="login-screen" class="login-screen" aria-labelledby="login-title">
+      <section class="login-card">
+        <div class="login-copy">
+          <p class="eyebrow">CADERNO DE VENDAS · 1º TRIMESTRE 2026</p>
+          <h1 id="login-title">Um olhar gentil sobre os números.</h1>
+          <p class="login-intro">Entre para explorar as vendas, cidades e categorias neste caderno de papelaria.</p>
+          <form id="login-form" class="login-form" novalidate>
+            <div class="field">
+              <label for="login-user">Usuário</label>
+              <input id="login-user" name="username" autocomplete="username" required>
+            </div>
+            <div class="field">
+              <label for="login-password">Senha</label>
+              <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+            </div>
+            <p id="login-error" class="login-error" role="alert" aria-live="assertive" hidden></p>
+            <button class="button-primary login-submit" type="submit">Abrir o painel</button>
+          </form>
+          <aside class="demo-note" aria-label="Acesso demonstrativo">
+            <strong>Acesso para demonstração</strong>
+            <p>Usuário: <code>demo</code> · Senha: <code>papelaria2026</code></p>
+            <p>Este acesso é validado no navegador e serve apenas para demonstração; não oferece segurança de produção.</p>
+          </aside>
+        </div>
+        <div class="login-art" aria-hidden="true">
+          <img src="./images/papelaria.svg" alt="">
+          <p>Pequenos registros,<br>grandes ideias.</p>
+        </div>
+      </section>
+      <p class="login-footer">Painel demonstrativo · Dados do primeiro trimestre de 2026</p>
+    </main>
+
+    <div id="dashboard-app" hidden>
+      <header class="site-header">
+        <div class="header-inner">
+          <div class="brand-lockup">
+            <img class="header-art" src="./images/papelaria.svg" alt="" aria-hidden="true">
+            <div>
+              <p class="eyebrow">CADERNO DE VENDAS · 1º TRIMESTRE DE 2026</p>
+              <h1>Vendas da papelaria</h1>
+              <p class="subtitle">Acompanhe valores vendidos, quantidade de vendas e produtos por cidade e categoria.</p>
+            </div>
+          </div>
+          <button id="logout-button" class="button-secondary logout-button" type="button">Sair</button>
+        </div>
+      </header>
+
+      <main id="conteudo" class="dashboard" tabindex="-1">
+        <div id="load-error" class="notice error" role="alert" hidden>
+          Não foi possível carregar os dados. Abra o painel usando o servidor HTTP indicado no README.
+        </div>
+
+        <section class="filters panel" aria-labelledby="filters-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">EXPLORAR</p>
+              <h2 id="filters-title">Filtros</h2>
+            </div>
+            <button id="clear-filters" class="button-secondary" type="button">Limpar filtros</button>
+          </div>
+          <div class="filter-controls">
+            <label for="filter-city">Cidade</label>
+            <select id="filter-city" name="cidade"><option value="">Todas as cidades</option></select>
+            <label for="filter-category">Categoria</label>
+            <select id="filter-category" name="categoria"><option value="">Todas as categorias</option></select>
+          </div>
+          <p id="result-count" class="result-count" aria-live="polite" aria-atomic="true">Aguardando acesso…</p>
+        </section>
+
+        <section aria-labelledby="overview-title">
+          <div class="section-heading section-heading-tight">
+            <div><p class="eyebrow">RESUMO</p><h2 id="overview-title">Indicadores de vendas</h2></div>
+          </div>
+          <div class="kpi-grid">
+            <article class="kpi-card panel"><h3>Valor total vendido</h3><p id="kpi-total" class="kpi-value">—</p><p class="kpi-note">Soma do valor das vendas selecionadas</p></article>
+            <article class="kpi-card panel"><h3>Quantidade de vendas</h3><p id="kpi-count" class="kpi-value">—</p><p class="kpi-note">Uma venda por linha / ID único</p></article>
+            <article class="kpi-card panel"><h3>Ticket médio</h3><p id="kpi-average" class="kpi-value">—</p><p class="kpi-note">Valor total dividido pelas vendas</p></article>
+          </div>
+        </section>
+
+        <section aria-labelledby="charts-title">
+          <div class="section-heading section-heading-tight">
+            <div><p class="eyebrow">COMPARAR</p><h2 id="charts-title">Onde e o que foi vendido</h2></div>
+          </div>
+          <div class="chart-grid">
+            <article class="panel chart-card"><h3>Valor vendido por categoria</h3><p class="chart-subtitle">Soma em reais · barras começam em zero</p><div id="category-chart" class="chart" aria-live="polite"></div></article>
+            <article class="panel chart-card"><h3>Valor vendido por cidade</h3><p class="chart-subtitle">Soma em reais · barras começam em zero</p><div id="city-chart" class="chart" aria-live="polite"></div></article>
+          </div>
+        </section>
+
+        <section class="panel table-panel" aria-labelledby="table-title">
+          <div class="section-heading"><div><p class="eyebrow">DETALHAMENTO</p><h2 id="table-title">Vendas selecionadas</h2></div></div>
+          <p id="empty-state" class="empty-state" role="status" hidden>Nenhuma venda encontrada. Tente outros filtros ou limpe a seleção.</p>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="Tabela de vendas; use as setas para navegar horizontalmente">
+            <table>
+              <caption class="visually-hidden">Vendas filtradas. Cada linha representa uma venda identificada por um ID único.</caption>
+              <thead><tr><th scope="col">Data</th><th scope="col">ID da venda</th><th scope="col">Cidade</th><th scope="col">Categoria</th><th scope="col">Produto</th><th scope="col" class="numeric">Quantidade</th><th scope="col" class="numeric">Preço unitário</th><th scope="col" class="numeric">Valor da venda</th></tr></thead>
+              <tbody id="sales-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <footer class="page-footer">
+          <p>Fonte: <code>papelaria_limpa.csv</code> · Período: <span id="date-range">—</span>.</p>
+          <p>Valor vendido não é lucro: a base não informa custos ou margens.</p>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
